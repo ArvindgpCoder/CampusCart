@@ -17,7 +17,7 @@ mongoose.set("strictQuery", false);
 app.use(express.urlencoded({ extended: false }));
 mongoose.connect(process.env.DB_MONGO);
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, (req, res) => {
   console.log(`Server is running at port ${PORT}`);
