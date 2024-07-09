@@ -34,7 +34,7 @@ function Profile() {
     });
     axios({
       method: "post",
-      baseURL: `${process.env.REACT_APP_BASEURL}`,
+      baseURL: `https://campuscart-mwy7.onrender.com`,
       url: "/api/update",
       data: { newData: data, id: id },
     })
@@ -58,7 +58,7 @@ function Profile() {
     }
     axios({
       method: "post",
-      baseURL: `${process.env.REACT_APP_BASEURL}`,
+      baseURL: `https://campuscart-mwy7.onrender.com`,
       url: "/api",
       data: { token: token },
     })
@@ -67,7 +67,7 @@ function Profile() {
         setId(myid);
         axios({
           method: "post",
-          baseURL: `${process.env.REACT_APP_BASEURL}`,
+          baseURL: `https://campuscart-mwy7.onrender.com`,
           url: "/api/profile",
           data: { id: myid },
         })
@@ -104,7 +104,7 @@ function Profile() {
     localStorage.setItem("token", JSON.stringify(""));
     axios({
       method: "post",
-      baseURL: `${process.env.REACT_APP_BASEURL}`,
+      baseURL: `https://campuscart-mwy7.onrender.com`,
       url: "/api/logout",
       data: { id: id },
     })
@@ -118,7 +118,7 @@ function Profile() {
   const handleDeleteAcc = () => {
     axios({
       method: "post",
-      baseURL: `${process.env.REACT_APP_BASEURL}`,
+      baseURL: `https://campuscart-mwy7.onrender.com`,
       url: "/api/deleteAccount",
       data: { id: id },
     })
@@ -254,7 +254,7 @@ function Profile() {
                       onClick={(e) => {
                         axios({
                           method: "post",
-                          baseURL: `${process.env.REACT_APP_BASEURL}`,
+                          baseURL: `https://campuscart-mwy7.onrender.com`,
                           url: "/api/deletemyprod",
                           data: { pid: ele.id },
                         })

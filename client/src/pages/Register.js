@@ -75,11 +75,11 @@ function Register() {
       toast.loading("Processing", {
         duration: 5000,
       });
-      console.log(process.env.REACT_APP_BASEURL);
+     // console.log(process.env.REACT_APP_BASEURL);
 
       axios({
         method: "post",
-        baseURL: `${process.env.REACT_APP_BASEURL}`,
+        baseURL: `https://campuscart-mwy7.onrender.com`,
         url: "/api/register",
         data: data,
       })

@@ -11,13 +11,12 @@ function Design() {
       <div id={styles.loginLogo}>
         <div id={styles.loginBuyNSell}>
           <div>
-            buy
-            <span style={{ fontFamily: "'Playfair Display', serif" }}>&</span>
-            sell
+            Campus
+            Mart
           </div>
         </div>
         <div id={styles.loginMotto}>
-          <div>connect, buy and sell</div>
+          <div>connect buy and sell</div>
         </div>
       </div>
       <div id={styles.scenery}>

@@ -24,7 +24,7 @@ function Login() {
     e.preventDefault();
     axios({
       method: "post",
-      baseURL: `${process.env.REACT_APP_BASEURL}`,
+      baseURL: `https://campuscart-mwy7.onrender.com`,
       url: "/api/login",
       data: data,
     })
