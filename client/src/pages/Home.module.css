@@ -107,6 +107,7 @@
   img {
     height: 20vh;
     width: 20vh;
+
   }
 }
 
@@ -135,7 +136,7 @@
   span {
     width: 4rem;
     height: inherit;
-    background-color:black;
+    background-color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,11 +145,12 @@
     img {
       height: 60%;
       width: auto;
+      margin-left: 7px;
     }
   }
 
   span:hover {
-    background-color:black;
+    background-color: black;
   }
 }
 
