@@ -129,7 +129,7 @@ function Register() {
             onChange={handleChange}
             autoComplete={"off"}
           />
-          <div id={styles.checkboxes}>
+          <div className={styles.checkboxes} style={{ display: 'flex' }}>
             <label htmlFor="btech">
               <input
                 type="radio"
@@ -141,6 +141,9 @@ function Register() {
                   setMtech(false);
                 }}
                 checked={Btech}
+                style={{
+                  height: "15px"
+                }}
               />
               B.Tech
             </label>
@@ -155,7 +158,9 @@ function Register() {
                   setPhD(false);
                   setBtech(false);
                 }}
-                checked={Mtech}
+                checked={Mtech} style={{
+                  height: "15px"
+                }}
               />
               M.Tech
             </label>
@@ -170,7 +175,9 @@ function Register() {
                   setBtech(false);
                   setMtech(false);
                 }}
-                checked={PhD}
+                checked={PhD} style={{
+                  height: "15px"
+                }}
               />
               Ph.D
             </label>
