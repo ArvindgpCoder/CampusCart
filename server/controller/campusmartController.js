@@ -1,10 +1,10 @@
-const User = require("../models/user");
-const Token = require("../models/token");
+const User = require("../models/user.js");
+const Token = require("../models/token.js");
 const bcrypt = require("bcrypt");
-const Product = require("../models/products");
+const Product = require("../models/products.js");
 const jwt = require("jsonwebtoken");
-const UserToken = require("../models/userToken");
-const verifyRefreshToken = require("../utils/verifyRefreshToken");
+const UserToken = require("../models/userToken.js");
+const verifyRefreshToken = require("../utils/verifyRefreshToken.js");
 const generateTokens = require("../utils/generateToken.js");
 
 const login = async (req, res) => {

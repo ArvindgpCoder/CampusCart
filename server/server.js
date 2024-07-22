@@ -1,4 +1,4 @@
-const buyNsellRouter = require("./routes/buyNsell");
+const buyNsellRouter = require("./routes/campusmart");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const express = require("express");
@@ -13,7 +13,6 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.set("strictQuery", false);
-// require("dotenv").config();
 app.use(express.urlencoded({ extended: false }));
 mongoose.connect(process.env.DB_MONGO);
 
