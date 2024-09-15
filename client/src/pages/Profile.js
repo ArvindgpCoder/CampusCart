@@ -34,15 +34,15 @@ function Profile() {
     });
     axios({
       method: "post",
-      baseURL: `https://campuscart-mwy7.onrender.com`,
+      baseURL: `http://localhost:5000`,
       url: "/api/update",
       data: { newData: data, id: id },
     })
-      .then(function (response) {
+      .then((response) => {
         toast.success("Updated Successfully");
         window.location.reload(true);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -58,16 +58,16 @@ function Profile() {
     }
     axios({
       method: "post",
-      baseURL: `https://campuscart-mwy7.onrender.com`,
+      baseURL: `http://localhost:5000`,
       url: "/api",
       data: { token: token },
     })
-      .then(function (response) {
+      .then((response) => {
         const myid = response.data.userid;
         setId(myid);
         axios({
           method: "post",
-          baseURL: `https://campuscart-mwy7.onrender.com`,
+          baseURL: `http://localhost:5000`,
           url: "/api/profile",
           data: { id: myid },
         })
@@ -79,7 +79,7 @@ function Profile() {
           })
           .catch((err) => console.log(err));
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }, []);
@@ -102,31 +102,21 @@ function Profile() {
 
   const handleLogoutAcc = () => {
     localStorage.setItem("token", JSON.stringify(""));
-    axios({
-      method: "post",
-      baseURL: `https://campuscart-mwy7.onrender.com`,
-      url: "/api/logout",
-      data: { id: id },
-    })
-      .then((res) => {
-        toast.success("Logged out successfully!");
-        navigate("/");
-      })
-      .catch((err) => console.log(err));
+    navigate("/");
   };
 
   const handleDeleteAcc = () => {
     axios({
       method: "post",
-      baseURL: `https://campuscart-mwy7.onrender.com`,
+      baseURL: `http://localhost:5000`,
       url: "/api/deleteAccount",
       data: { id: id },
     })
-      .then(function (response) {
+      .then((response) => {
         localStorage.setItem("token", JSON.stringify(""));
         navigate("/");
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -254,7 +244,7 @@ function Profile() {
                       onClick={(e) => {
                         axios({
                           method: "post",
-                          baseURL: `https://campuscart-mwy7.onrender.com`,
+                          baseURL: `http://localhost:5000`,
                           url: "/api/deletemyprod",
                           data: { pid: ele.id },
                         })

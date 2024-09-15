@@ -31,11 +31,11 @@ function Sell() {
     }
     axios({
       method: "post",
-      baseURL: `https://campuscart-mwy7.onrender.com`,
+      baseURL: `http://localhost:5000`,
       url: "/api",
       data: { token: token },
     })
-      .then(function (response) {
+      .then((response) => {
         const id = response.data.userid;
         setId(id);
         setData((prev) => {
@@ -43,12 +43,12 @@ function Sell() {
         });
         axios({
           method: "post",
-          baseURL: `https://campuscart-mwy7.onrender.com`,
+          baseURL: `http://localhost:5000`,
           url: "/api/profile",
           data: { id: id },
         }).catch((err) => console.log(err));
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }, []);
@@ -79,15 +79,15 @@ function Sell() {
     toast.loading("Processing", { duration: 2000 });
     axios({
       method: "post",
-      baseURL: `https://campuscart-mwy7.onrender.com`,
+      baseURL: `http://localhost:5000`,
       url: "/api/sell",
       data: { pdata: data, id: id },
     })
-      .then(function (response) {
+      .then((response) => {
         toast.success("Product details updated successfully!");
         navigate("/");
       })
-      .catch(function (error) {
+      .catch((error) => {
         toast.error("Failed to update the details!");
         console.log("error caught in frontend from backend");
       });

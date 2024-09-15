@@ -24,20 +24,20 @@ function Login() {
     e.preventDefault();
     axios({
       method: "post",
-      baseURL: `https://campuscart-mwy7.onrender.com`,
+      baseURL: `http://localhost:5000`,
       url: "/api/login",
       data: data,
     })
-      .then(function (response) {
+      .then((response) => {
         toast.success("Signed in successfully!");
         console.log(response);
         localStorage.setItem(
           "token",
-          JSON.stringify(response.data.refreshToken)
+          JSON.stringify(response.data.token)
         );
         navigate("/");
       })
-      .catch(function (error) {
+      .catch((error) => {
         toast.error("Sign in failed!");
         console.log("error caught in frontend from backend");
       });

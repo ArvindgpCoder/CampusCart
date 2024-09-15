@@ -1,14 +1,9 @@
-const UserToken = require("../models/userToken.js");
 const jwt = require("jsonwebtoken");
 
-const verifyRefreshToken = async (refreshToken) => {
-  const privateKey = process.env.REFRESH_KEY;
+const verifyToken = async (Token) => {
+  const privateKey = process.env.KEY;
   return new Promise((resolve, reject) => {
-    const tokenFound = UserToken.findOne({
-      token: refreshToken,
-    });
-    if (!tokenFound) return reject({ error: true, message: "NOT FOUND" });
-    jwt.verify(refreshToken, privateKey, (err, tokenDetails) => {
+    jwt.verify(Token, privateKey, (err, tokenDetails) => {
       if (err) {
         return reject({ error: false, message: "Invalid refresh token" });
       }
@@ -21,4 +16,4 @@ const verifyRefreshToken = async (refreshToken) => {
   });
 };
 
-module.exports = verifyRefreshToken;
+module.exports = verifyToken;

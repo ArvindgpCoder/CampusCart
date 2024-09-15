@@ -23,29 +23,29 @@ function Home() {
     const token = JSON.parse(localStorage.getItem("token"));
     axios({
       method: "post",
-      baseURL: `https://campuscart-mwy7.onrender.com`,
+      baseURL: `http://localhost:5000`,
       url: "/api",
       data: { token: token },
     })
-      .then(function (response) {
+      .then((response) => {
         setValid(true);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
         console.log("error caught in frontend from backend");
       });
     axios({
       method: "post",
-      baseURL: `https://campuscart-mwy7.onrender.com`,
+      baseURL: `http://localhost:5000`,
       url: "/api/allprod",
       data: {},
     })
-      .then(function (response) {
+      .then((response) => {
         setAllProd(response.data.details);
         setDisProd(response.data.details);
         setLoading(false);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
         setLoading(false);
         console.log("error caught in frontend from backend");
@@ -95,21 +95,21 @@ function Home() {
               console.log("Clicked");
               axios({
                 method: "post",
-                baseURL: `https://campuscart-mwy7.onrender.com`,
+                baseURL: `http://localhost:5000`,
                 url: "/api/searchproduct",
                 data: { searchval: searchval },
               })
-                .then(function (response) {
+                .then((response) => {
                   setAllProd(response.data.mysearchdata);
                   setDisProd(response.data.mysearchdata);
                 })
-                .catch(function (error) {
+                .catch((error) => {
                   toast.error("Internal Error");
                   console.log(error);
                 });
             }}
           >
-            <img  src={search} alt="search" />
+            <img src={search} alt="search" />
           </span>
         </div>
         {valid ? (

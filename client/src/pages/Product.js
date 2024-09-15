@@ -36,19 +36,19 @@ function Product() {
 
     axios({
       method: "post",
-      baseURL: `https://campuscart-mwy7.onrender.com`,
+      baseURL: `http://localhost:5000`,
       url: "/api",
       data: { token: token },
     })
-      .then(function (response) {
+      .then((response) => {
         setValid(true);
         axios({
           method: "post",
-          baseURL: `https://campuscart-mwy7.onrender.com`,
+          baseURL: `http://localhost:5000`,
           url: "/api/prodData",
           data: { id: ppid },
         })
-          .then(function (response) {
+          .then((response) => {
             setData(response.data.details.data);
             setSname(response.data.details.name);
             setSmail(response.data.details.mail);
@@ -56,7 +56,7 @@ function Product() {
             setLoading(false);
             setProdExist(true);
           })
-          .catch(function (error) {
+          .catch((error) => {
             setLoading(false);
             console.log(error);
           });

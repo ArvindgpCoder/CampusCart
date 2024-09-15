@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const cors = require("cors");
 const app = express();
-app.use(bodyParser.json({ limit: '50mb' })); // Set the limit to 10MB or any size you prefer
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());

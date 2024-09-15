@@ -1,10 +1,8 @@
 const User = require("../models/user.js");
-const Token = require("../models/token.js");
 const bcrypt = require("bcrypt");
 const Product = require("../models/products.js");
 const jwt = require("jsonwebtoken");
-const UserToken = require("../models/userToken.js");
-const verifyRefreshToken = require("../utils/verifyRefreshToken.js");
+const verifyToken = require("../utils/verifyToken.js");
 const generateTokens = require("../utils/generateToken.js");
 
 const login = async (req, res) => {
@@ -18,12 +16,12 @@ const login = async (req, res) => {
       return res.status(401).send({ message: "Invalid Email or Password" });
     }
 
-    const { accessToken, refreshToken } = await generateTokens(user);
-    res.status(200).send({
-      message: "logged in successfully",
-      refreshToken,
-      accessToken,
+    const token = await generateTokens(user);
+    return res.status(200).send({
+      message: "Logged in successfully",
+      token,
     });
+
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
@@ -55,63 +53,25 @@ const register = async (req, res) => {
   }
 };
 
-const verify = async (req, res) => {
-  try {
-    const user = await User.findOne({ _id: req.params.id });
-    if (!user) return res.status(400).send({ message: "Invalid link" });
-    const token = await Token.findOne({
-      userId: user._id,
-      token: req.params.token,
-    });
-    if (!token) return res.status(400).send({ message: "Invalid link" });
 
-    await User.updateOne({ _id: user._id }, { verified: true });
-    await Token.deleteOne({ userId: user._id });
-
-    res.status(200).send({ message: "Email verified successfully" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: "Internal Server Error" });
-  }
-};
-
+console.log("kuch to print Ho");
 const token = async (req, res) => {
-  verifyRefreshToken(req.body.token)
-    .then(async ({ tokenDetails }) => {
-      const payload = { _id: tokenDetails._id, role: tokenDetails.role };
-      const accessToken = jwt.sign(payload, process.env.PRIVATE_KEY, {
-        expiresIn: "14m",
-      });
-
-
-      res.status(200).send({
-        error: false,
-        userid: tokenDetails._id,
-        role: tokenDetails.role,
-        message: "Access token created successfully",
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(400).send(err);
-    });
-};
-
-const delToken = async (req, res) => {
   try {
-    const usertoken = await UserToken.findOne({ token: req.body.refreshToken });
-    if (!usertoken)
-      return res
-        .status(200)
-        .send({ error: false, message: "Logged Out Sucessfully" });
 
-    await usertoken.remove();
-    res.status(200).send({ error: false, message: "Logged Out Sucessfully" });
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({ error: true, message: "Internal Server Error" });
+    const result = await verifyToken(req.body.token);
+    console.log("req.body.data.token: ", req.body);
+    console.log("result: ", result);
+
+    res.status(200).send({
+      error: false,
+      userid: result.tokenDetails._id,
+      message: "Access token created successfully",
+    });
+  } catch (error) {
+    res.status(401).send({ message: "Invalid token", error: error.message });
   }
 };
+
 
 const profile = async (req, res) => {
   try {
@@ -119,8 +79,6 @@ const profile = async (req, res) => {
     const user = await User.findOne({ _id: id });
 
     var arr = [];
-
-
 
     const mydata = await Product.find({ id: id });
 
@@ -167,7 +125,6 @@ const delAcc = async (req, res) => {
   try {
     const id = req.body.id;
     await User.deleteOne({ _id: id });
-    await UserToken.deleteOne({ userId: id });
     await Product.deleteOne({ id: id });
     res
       .status(200)
@@ -178,16 +135,7 @@ const delAcc = async (req, res) => {
   }
 };
 
-const logout = async (req, res) => {
-  try {
-    const id = req.body.id;
-    await UserToken.deleteOne({ userId: id });
-    res.status(200).send({ error: false, message: "Logged out successfully" });
-  } catch (error) {
-    console.log(error);
-    res.status(400).send({ error: true });
-  }
-};
+
 
 const update = async (req, res) => {
   try {
@@ -253,13 +201,10 @@ const sell = async (req, res) => {
 module.exports = {
   login,
   register,
-  verify,
   token,
-  delToken,
   profile,
   deletemyprod,
   delAcc,
-  logout,
   update,
   displayProd,
   searchproduct,

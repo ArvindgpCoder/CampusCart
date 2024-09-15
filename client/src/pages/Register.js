@@ -77,11 +77,11 @@ function Register() {
 
       axios({
         method: "post",
-        baseURL: `https://campuscart-mwy7.onrender.com`,
+        baseURL: `http://localhost:5000`,
         url: "/api/register",
         data: data,
       })
-        .then(function (response) {
+        .then((response) => {
           if (response.data.info === "userExist") {
             toast.error("User already exist with this mail-id!");
           }
@@ -89,7 +89,7 @@ function Register() {
             window.location.href = "/login";
           }
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
         });
     }
