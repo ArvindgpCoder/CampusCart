@@ -77,7 +77,8 @@ function Register() {
 
       axios({
         method: "post",
-        baseURL: `http://localhost:5000`,
+        baseURL: `https://campuscart-mwy7.onrender.com
+`,
         url: "/api/register",
         data: data,
       })

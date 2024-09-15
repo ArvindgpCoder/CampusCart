@@ -31,7 +31,8 @@ function Sell() {
     }
     axios({
       method: "post",
-      baseURL: `http://localhost:5000`,
+      baseURL: `https://campuscart-mwy7.onrender.com
+`,
       url: "/api",
       data: { token: token },
     })
@@ -43,7 +44,8 @@ function Sell() {
         });
         axios({
           method: "post",
-          baseURL: `http://localhost:5000`,
+          baseURL: `https://campuscart-mwy7.onrender.com
+`,
           url: "/api/profile",
           data: { id: id },
         }).catch((err) => console.log(err));
@@ -79,7 +81,8 @@ function Sell() {
     toast.loading("Processing", { duration: 2000 });
     axios({
       method: "post",
-      baseURL: `http://localhost:5000`,
+      baseURL: `https://campuscart-mwy7.onrender.com
+`,
       url: "/api/sell",
       data: { pdata: data, id: id },
     })

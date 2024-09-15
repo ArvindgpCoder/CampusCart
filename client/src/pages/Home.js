@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../components/Card/Card";
 import { LoaderIcon, toast } from "react-hot-toast";
-
 function Home() {
   const [loading, setLoading] = useState(true);
   const [searchval, setsearchval] = useState("");
@@ -23,7 +22,8 @@ function Home() {
     const token = JSON.parse(localStorage.getItem("token"));
     axios({
       method: "post",
-      baseURL: `http://localhost:5000`,
+      baseURL: `https://campuscart-mwy7.onrender.com
+`,
       url: "/api",
       data: { token: token },
     })
@@ -36,7 +36,8 @@ function Home() {
       });
     axios({
       method: "post",
-      baseURL: `http://localhost:5000`,
+      baseURL: `https://campuscart-mwy7.onrender.com
+`,
       url: "/api/allprod",
       data: {},
     })
@@ -95,7 +96,8 @@ function Home() {
               console.log("Clicked");
               axios({
                 method: "post",
-                baseURL: `http://localhost:5000`,
+                baseURL: `https://campuscart-mwy7.onrender.com
+`,
                 url: "/api/searchproduct",
                 data: { searchval: searchval },
               })

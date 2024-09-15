@@ -36,7 +36,8 @@ function Product() {
 
     axios({
       method: "post",
-      baseURL: `http://localhost:5000`,
+      baseURL: `https://campuscart-mwy7.onrender.com
+`,
       url: "/api",
       data: { token: token },
     })
@@ -44,7 +45,8 @@ function Product() {
         setValid(true);
         axios({
           method: "post",
-          baseURL: `http://localhost:5000`,
+          baseURL: `https://campuscart-mwy7.onrender.com
+`,
           url: "/api/prodData",
           data: { id: ppid },
         })
